@@ -1,7 +1,7 @@
 package com.codedecode.foodcatalogue.controller;
 
 import com.codedecode.foodcatalogue.dto.FoodCataloguePage;
-import com.codedecode.foodcatalogue.dto.FoodItemDTO;
+import com.codedecode.foodcatalogue.dto.FoodItemsDTO;
 import com.codedecode.foodcatalogue.service.FoodCatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +16,8 @@ public class FoodCatalogueController {
     FoodCatalogueService foodCatalogueService;
 
     @PostMapping("/addFoodItem")
-    public ResponseEntity<FoodItemDTO> addFoodItem (@RequestBody FoodItemDTO foodItemDTO){
-        FoodItemDTO foodItemSaved = foodCatalogueService.addFoodItem(foodItemDTO);
+    public ResponseEntity<FoodItemsDTO> addFoodItem (@RequestBody FoodItemsDTO foodItemsDTO){
+        FoodItemsDTO foodItemSaved = foodCatalogueService.addFoodItem(foodItemsDTO);
         return new ResponseEntity<>(foodItemSaved, HttpStatus.CREATED);
     }
 

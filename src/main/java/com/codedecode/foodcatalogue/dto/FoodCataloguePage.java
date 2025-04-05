@@ -12,6 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class FoodCataloguePage {
 
-    private List<FoodItem> foodItemList;
+    private List<FoodItem> foodItemsList;
     private Restaurant restaurant;
 }

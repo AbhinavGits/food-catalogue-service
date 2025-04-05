@@ -1,7 +1,7 @@
 package com.codedecode.foodcatalogue.service;
 
 import com.codedecode.foodcatalogue.dto.FoodCataloguePage;
-import com.codedecode.foodcatalogue.dto.FoodItemDTO;
+import com.codedecode.foodcatalogue.dto.FoodItemsDTO;
 import com.codedecode.foodcatalogue.dto.Restaurant;
 import com.codedecode.foodcatalogue.entity.FoodItem;
 import com.codedecode.foodcatalogue.mapper.FoodItemMapper;
@@ -21,22 +21,22 @@ public class FoodCatalogueService {
     @Autowired
     RestTemplate restTemplate;
 
-    public FoodItemDTO addFoodItem(FoodItemDTO foodItemDTO) {
-        FoodItem foodItemSavedInDb = foodItemRepo.save(FoodItemMapper.INSTANCE.mapFoodItemDTOtoFoodItem(foodItemDTO));
+    public FoodItemsDTO addFoodItem(FoodItemsDTO foodItemsDTO) {
+        FoodItem foodItemSavedInDb = foodItemRepo.save(FoodItemMapper.INSTANCE.mapFoodItemDTOtoFoodItem(foodItemsDTO));
         return FoodItemMapper.INSTANCE.mapFoodItemToFoodItemDTO(foodItemSavedInDb);
     }
 
     public FoodCataloguePage fetchFoodCataloguePageDetails(Integer restaurantId) {
         
-        List<FoodItem> foodItemList = fetchFoodItemList(restaurantId);
+        List<FoodItem> foodItemsList = fetchFoodItemList(restaurantId);
         Restaurant restaurant = fetchRestaurantDetailsFromRestaurantMS(restaurantId);
-        return createFoodCataloguePage(foodItemList, restaurant);
+        return createFoodCataloguePage(foodItemsList, restaurant);
 
     }
 
-    private FoodCataloguePage createFoodCataloguePage(List<FoodItem> foodItemList, Restaurant restaurant) {
+    private FoodCataloguePage createFoodCataloguePage(List<FoodItem> foodItemsList, Restaurant restaurant) {
         FoodCataloguePage foodCataloguePage = new FoodCataloguePage();
-        foodCataloguePage.setFoodItemList(foodItemList);
+        foodCataloguePage.setFoodItemsList(foodItemsList);
         foodCataloguePage.setRestaurant(restaurant);
         return foodCataloguePage;
     }
